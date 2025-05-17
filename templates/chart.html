@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart - Car Damage Detection</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Styles -->
+    <style>
+        .custom-bg {
+            background-image: url('../static/images/car6.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+
+    <!-- Google Charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Damage Type', 'Occurrences'],
+                ['Damaged Door', 40],
+                ['Damaged Window', 30],
+                ['Damaged Headlight', 80],
+                ['Damaged Mirror', 20],
+                ['Dent', 70],
+                ['Damaged Hood', 50],
+                ['Damaged Bumper', 35],
+                ['Damaged Windshield', 60]
+            ]);
+
+            var options = {
+                title: 'Vehicle Damage Distribution',
+                is3D: true,
+                backgroundColor: 'transparent',
+                legendTextStyle: { color: 'white' },
+                titleTextStyle: { color: 'white' }
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
+
+    <!-- 🚀 NAVIGATION BAR -->
+    <nav class="bg-white dark:bg-gray-800 shadow-md p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{{ url_for('first') }}" class="text-lg font-bold">🚗 Car Damage Detection</a>
+            <div>
+                <a href="{{ url_for('first') }}" class="mx-2 text-gray-700 dark:text-gray-300 hover:text-blue-500">🏠 Home</a>
+                <a href="{{ url_for('image') }}" class="mx-2 text-gray-700 dark:text-gray-300 hover:text-blue-500">📸 Image Prediction</a>
+                <a href="{{ url_for('video') }}" class="mx-2 text-gray-700 dark:text-gray-300 hover:text-blue-500">🎥 Video Prediction</a>
+                <a href="{{ url_for('webcam') }}" class="mx-2 text-gray-700 dark:text-gray-300 hover:text-blue-500">📷 Webcam</a>
+                <a href="{{ url_for('performance') }}" class="mx-2 text-gray-700 dark:text-gray-300 hover:text-blue-500">📊 Performance Analysis</a>
+                <a href="{{ url_for('chart') }}" class="mx-2 text-blue-600 dark:text-blue-400 font-semibold">📈 Chart</a>
+                <a href="{{ url_for('first') }}" class="mx-2 text-red-600 dark:text-red-400 hover:text-red-500 font-semibold">🚪 Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 🚀 HERO SECTION -->
+    <section class="custom-bg h-96 flex items-center justify-center text-center">
+        <div class="bg-black bg-opacity-50 p-6 rounded-lg">
+            <h1 class="text-4xl font-bold text-white">📊 Damage Analysis Chart</h1>
+        </div>
+    </section>
+
+    <!-- 🚀 CHART SECTION -->
+    <section class="py-12">
+        <div class="container mx-auto max-w-4xl bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-semibold text-center">📈 Damage Distribution</h2>
+            <p class="text-center text-gray-600 dark:text-gray-400 mt-2">
+                Analysis of various vehicle damages detected using deep learning.
+            </p>
+
+            <!-- Chart Display -->
+            <div class="flex justify-center my-6">
+                <div id="piechart_3d" class="w-full max-w-lg h-96"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🚀 FOOTER -->
+    <footer class="text-center p-4 bg-gray-200 dark:bg-gray-800 mt-10">
+        &copy; 2025 Car Damage Detection | All Rights Reserved.
+    </footer>
+
+</body>
+</html>

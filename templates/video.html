@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A System for Automated Vehicle Damage Localization and Severity Estimation Using Deep Learning</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Styles -->
+    <style>
+        .custom-bg {
+            background-image: url('../static/images/wheat6.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
+
+    <!-- 🚀 NAVIGATION BAR -->
+    <nav class="bg-white dark:bg-gray-800 shadow-md p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{{ url_for('first') }}" class="text-lg font-bold">🚗 Car Damage Detection</a>
+            <div>
+                <a href="{{ url_for('first') }}" class="mx-2 text-gray-700 dark:text-gray-300 hover:text-blue-500">🏠 Home</a>
+                <a href="{{ url_for('image') }}" class="mx-2 text-gray-700 dark:text-gray-300 hover:text-blue-500">📸 Image Prediction</a>
+                <a href="{{ url_for('video') }}" class="mx-2 text-gray-700 dark:text-gray-300 hover:text-blue-500">🎥 Video Prediction</a>
+                <a href="{{ url_for('webcam') }}" class="mx-2 text-gray-700 dark:text-gray-300 hover:text-blue-500">📷 Webcam</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 🚀 HERO SECTION -->
+    <section class="custom-bg h-96 flex items-center justify-center text-center">
+        <div class="bg-black bg-opacity-50 p-6 rounded-lg">
+            <h1 class="text-4xl font-bold text-white">Car Damage Detection</h1>
+        </div>
+    </section>
+
+    <!-- 🚀 VIDEO UPLOAD SECTION -->
+    <section class="py-12">
+        <div class="container mx-auto max-w-2xl bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-semibold text-center">🎥 Upload a Video</h2>
+            <p class="text-center text-gray-600 dark:text-gray-400 mt-2">
+                CrashScope
+            </p>
+
+            <form class="mt-6" action="{{ url_for('predict_video') }}" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+
+                <input type="file" class="w-full px-4 py-2 border border-gray-300 rounded-lg dark:bg-gray-700" name="file" id="inputfile" accept="video/mp4">
+                <button type="submit" class="w-full mt-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                    Upload
+                </button>
+            </form>
+
+
+{% if video_path %}
+  
+  <br><br>
+  <a class="btn btn-primary" href="{{ url_for('static', filename=video_path) }}" download>📥 Download Processed Video</a>
+{% endif %}
+
+
+           
+    </section>
+
+    <!-- 🚀 FOOTER -->
+    <footer class="text-center p-4 bg-gray-200 dark:bg-gray-800 mt-10">
+        &copy; 2025 Car Damage Detection | All Rights Reserved.
+    </footer>
+
+    <!-- 🚀 JavaScript for Validation & Dark Mode -->
+    <script>
+        function validateForm() {
+            var inputFile = document.getElementById("inputfile");
+            if (inputFile.files.length === 0) {
+                alert("Please Upload The Video");
+                return false;
+            }
+            var allowedTypes = ["video/mp4"];
+            if (allowedTypes.indexOf(inputFile.files[0].type) === -1) {
+                alert("Please upload a valid .mp4 video file");
+                return false;
+            }
+            return true;
+        }
+
+        // PDF Generation Function for Video
+        document.getElementById('downloadBtn').addEventListener('click', function () {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Add the video to the PDF (you can add a screenshot or key frame)
+            const img = document.getElementById('resultVideo');
+            doc.addImage(img, 'PNG', 10, 10, 180, 120);
+
+            // Save the PDF
+            doc.save('Car_Damage_Detection_Video.pdf');
+        });
+    </script>
+
+</body>
+</html>

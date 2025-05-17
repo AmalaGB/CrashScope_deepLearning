@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam - Car Damage Detection</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Styles -->
+    <style>
+        .custom-bg {
+            background-image: url('../static/images/car6.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
+
+    <!-- 🚀 NAVIGATION BAR -->
+    <nav class="bg-white dark:bg-gray-800 shadow-md p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{{ url_for('first') }}" class="text-lg font-bold">🚗 Car Damage Detection</a>
+            <div>
+                <a href="{{ url_for('first') }}" class="mx-2 text-gray-700 dark:text-gray-300 hover:text-blue-500">🏠 Home</a>
+                <a href="{{ url_for('image') }}" class="mx-2 text-gray-700 dark:text-gray-300 hover:text-blue-500">📸 Image Prediction</a>
+                <a href="{{ url_for('video') }}" class="mx-2 text-gray-700 dark:text-gray-300 hover:text-blue-500">🎥 Video Prediction</a>
+                <a href="{{ url_for('webcam') }}" class="mx-2 text-gray-700 dark:text-gray-300 hover:text-blue-500">📷 Webcam</a>
+                <a href="{{ url_for('performance') }}" class="mx-2 text-gray-700 dark:text-gray-300 hover:text-blue-500">📷 Performance_Analysis</a>
+            
+        </div>
+    </nav>
+
+    <!-- 🚀 HERO SECTION -->
+    <section class="custom-bg h-96 flex items-center justify-center text-center">
+        <div class="bg-black bg-opacity-50 p-6 rounded-lg">
+            <h1 class="text-4xl font-bold text-white">Live Webcam Damage Analysis</h1>
+        </div>
+    </section>
+
+    <!-- 🚀 WEBCAM FEED SECTION -->
+    <section class="py-12">
+        <div class="container mx-auto max-w-2xl bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-semibold text-center">📷 Live Webcam Feed</h2>
+            <p class="text-center text-gray-600 dark:text-gray-400 mt-2">
+                Analyze vehicle damage in real-time using deep learning.
+            </p>
+
+            <!-- Live Webcam Stream -->
+            <div class="flex justify-center my-6">
+                <img src="{{ url_for('video_feed') }}" alt="Webcam Feed" class="rounded-lg shadow-lg w-full max-w-lg">
+            </div>
+
+            <!-- Stop Button -->
+            <form action="/stop" method="POST" class="text-center">
+                <button class="w-full py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">🛑 Stop Analysis</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- 🚀 FOOTER -->
+    <footer class="text-center p-4 bg-gray-200 dark:bg-gray-800 mt-10">
+        &copy; 2025 Car Damage Detection | All Rights Reserved.
+    </footer>
+
+    <!-- 🚀 JavaScript for Dark Mode -->
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark");
+        }
+    </script>
+
+</body>
+</html>

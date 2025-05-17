@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Car Damage Detection</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        /* Full-Screen Background */
+        body {
+            background-image: url('../static/images/wheat6.jpg'); /* Update with your wallpaper */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Semi-Transparent Box */
+        .login-container {
+            background-color: rgba(124, 89, 13, 0.9); /* Light transparency */
+        }
+
+        .dark .login-container {
+            background-color: rgba(0, 0, 0, 0.7); /* Dark mode transparency */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white flex items-center justify-center min-h-screen">
+
+    <div class="login-container max-w-md w-full p-8 rounded-lg shadow-lg">
+        <div class="text-center">
+            <h2 class="text-3xl font-bold">🔑 Login</h2>
+            <p class="text-gray-600 dark:text-gray-400">Car Damage Detection System</p>
+        </div>
+
+        <!-- 🚀 Alert Message (Hidden by Default) -->
+        <div id="error-message" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-4">
+            ❌ Invalid Credentials!
+        </div>
+
+        <!-- 🚀 Login Form -->
+        <form class="mt-6" onsubmit="return login()">
+            <label class="block">Username:</label>
+            <input type="text" id="uname" class="w-full px-4 py-2 border border-gray-300 rounded-lg dark:bg-gray-700" required>
+
+            <label class="block mt-3">Password:</label>
+            <input type="password" id="pwd" class="w-full px-4 py-2 border border-gray-300 rounded-lg dark:bg-gray-700" required>
+
+            <button type="submit" class="w-full mt-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                Sign in
+            </button>
+        </form>
+    </div>
+
+    <!-- 🚀 JavaScript for Login Validation -->
+    <script>
+        function login() {
+            var uname = document.getElementById("uname").value;
+            var pwd = document.getElementById("pwd").value;
+            var errorMessage = document.getElementById("error-message");
+
+            if (uname === "admin" && pwd === "admin") {
+                alert("✅ Login Success!");
+                window.location.href = "{{ url_for('image') }}";  // Redirect to Image Upload
+                return false;
+            } else {
+                errorMessage.classList.remove("hidden");
+                return false;
+            }
+        }
+    </script>
+
+</body>
+</html>

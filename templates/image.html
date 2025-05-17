@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A System for Automated Vehicle Damage Localization and Severity Estimation Using Deep Learning</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Styles -->
+    <style>
+        .custom-bg {
+            background-image: url('../static/images/car1.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+
+    <!-- jsPDF Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
+
+    <!-- 🚀 NAVIGATION BAR -->
+    <nav class="bg-white dark:bg-gray-800 shadow-md p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{{ url_for('first') }}" class="text-lg font-bold">🚗 Car Damage Detection</a>
+            <div>
+                <a href="{{ url_for('first') }}" class="mx-2 text-gray-700 dark:text-gray-300 hover:text-blue-500">🏠 Home</a>
+                <a href="{{ url_for('image') }}" class="mx-2 text-gray-700 dark:text-gray-300 hover:text-blue-500">📸 Image Prediction</a>
+                <a href="{{ url_for('video') }}" class="mx-2 text-gray-700 dark:text-gray-300 hover:text-blue-500">🎥 Video Prediction</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 🚀 HERO SECTION -->
+    <section class="custom-bg h-96 flex items-center justify-center text-center">
+        <div class="bg-black bg-opacity-50 p-6 rounded-lg">
+            <h1 class="text-4xl font-bold text-white">Car Damage Detection</h1>
+        </div>
+    </section>
+
+    <!-- 🚀 IMAGE UPLOAD SECTION -->
+    <section class="py-12">
+        <div class="container mx-auto max-w-2xl bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-semibold text-center">📸 Upload an Image</h2>
+            <p class="text-center text-gray-600 dark:text-gray-400 mt-2">
+                CrashScope
+            </p>
+
+            <form class="mt-6" method="POST" action="{{ url_for('predict') }}" enctype="multipart/form-data" onsubmit="return validateForm()">
+                <input type="file" class="w-full px-4 py-2 border border-gray-300 rounded-lg dark:bg-gray-700" name="file" id="inputfile" accept="image/png, image/jpeg">
+                <button type="submit" class="w-full mt-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                    Submit
+                </button>
+            </form>
+
+            {% if detection_results %}
+            <h3 class="text-center mt-6">🔍 Detection Results:</h3>
+            <img id="resultImage" src="data:image/png;base64,{{ detection_results }}" class="w-full mt-4 rounded-lg">
+
+            <!-- Button to Download PDF -->
+            <div class="text-center mt-4">
+                <button id="downloadBtn" class="py-2 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700">
+                    Download as PDF
+                </button>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- 🚀 FOOTER -->
+    <footer class="text-center p-4 bg-gray-200 dark:bg-gray-800 mt-10">
+        &copy; 2025 Car Damage Detection | All Rights Reserved.
+    </footer>
+
+    <!-- 🚀 JavaScript for Validation & Dark Mode -->
+    <script>
+        function validateForm() {
+            var inputFile = document.getElementById("inputfile");
+            if (inputFile.files.length === 0) {
+                alert("Please Upload The Image");
+                return false;
+            }
+            var allowedTypes = ["image/jpeg", "image/png"];
+            if (allowedTypes.indexOf(inputFile.files[0].type) === -1) {
+                alert("Please upload a valid image file");
+                return false;
+            }
+            return true;
+        }
+
+        // PDF Generation Function
+        document.getElementById('downloadBtn').addEventListener('click', function () {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Add the image to the PDF
+            const img = document.getElementById('resultImage');
+            doc.addImage(img, 'PNG', 10, 10, 180, 120);
+
+            // Save the PDF
+            doc.save('Car_Damage_Detection.pdf');
+        });
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark");
+        }
+    </script>
+
+</body>
+</html>

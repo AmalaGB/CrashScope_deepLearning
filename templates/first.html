@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrashScope: Deep Learning and AI-Based Vehicle Damage Analyzer</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
+    
+    <!-- 🚀 NAVBAR -->
+    <nav class="bg-white dark:bg-gray-800 shadow-md p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{{ url_for('first') }}" class="text-lg font-bold">🚗 CrashScope</a>
+            <div>
+                <a href="{{ url_for('first') }}" class="mx-2 text-gray-700 dark:text-gray-300 hover:text-blue-500">🏠 Home</a>
+                <a href="{{ url_for('login') }}" class="mx-2 text-gray-700 dark:text-gray-300 hover:text-blue-500">🔑 Login</a>
+            </div>
+    </nav>
+
+    <!-- 🚀 HERO SECTION -->
+    <section class="relative bg-cover bg-center h-screen flex flex-col items-center justify-center text-center" 
+        style="background-image: url('../static/images/car3.jpg');">
+        <div class="bg-black bg-opacity-50 p-8 rounded-lg">
+            <h1 class="text-4xl font-bold text-white">
+                CrashScope: Deep Learning and AI-Based Vehicle Damage Analyzer
+            </h1>
+            <p class="text-lg text-gray-300 mt-4">
+                Identify, analyze, and assess vehicle damage using AI-powered solutions.
+            </p>
+            <a href="{{ url_for('login') }}" class="mt-6 inline-block bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg text-lg">
+                Get Started
+            </a>
+        </div>
+    </section>
+
+    <!-- 🚀 FEATURE HIGHLIGHTS -->
+    <section class="container mx-auto py-12">
+        <h2 class="text-3xl font-bold text-center">Why Choose CrashScope?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md text-center">
+                <h3 class="text-xl font-semibold">🔍 AI-Powered Detection</h3>
+                <p class="text-gray-600 dark:text-gray-400 mt-2">
+                    Our deep learning models accurately detect vehicle damage within seconds.
+                </p>
+            </div>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md text-center">
+                <h3 class="text-xl font-semibold">⚡ Fast & Efficient</h3>
+                <p class="text-gray-600 dark:text-gray-400 mt-2">
+                    Upload images or videos and receive instant damage reports.
+                </p>
+            </div>
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md text-center">
+                <h3 class="text-xl font-semibold">🛠 Seamless Integration</h3>
+                <p class="text-gray-600 dark:text-gray-400 mt-2">
+                    Works with various vehicle models, ensuring wide applicability.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🚀 CALL TO ACTION -->
+    <section class="bg-blue-600 py-12 text-white text-center">
+        <h2 class="text-3xl font-bold">Start Your Vehicle Damage Analysis Today</h2>
+        <p class="mt-2 text-lg">Try our AI-powered damage detection now.</p>
+        <a href="{{ url_for('image') }}" class="mt-4 inline-block bg-white text-blue-600 py-2 px-6 rounded-lg text-lg hover:bg-gray-100">
+            Upload an Image
+        </a>
+    </section>
+
+    <!-- 🚀 FOOTER -->
+    <footer class="text-center p-4 bg-gray-200 dark:bg-gray-800 mt-10">
+        &copy; 2025 CrashScope | All Rights Reserved.
+    </footer>
+
+    <!-- 🚀 JavaScript -->
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark");
+        }
+    </script>
+
+</body>
+</html>
