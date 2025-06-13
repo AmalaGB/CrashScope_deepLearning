@@ -12,44 +12,27 @@ CrashScope is an AI-powered car damage detection and classification system. Usin
 
 📦 Containerized using Docker for easy deployment
 
-📲 Telegram alert integration (optional for monitoring)
 
-🏗️ Project Structure
-bash
-Copy
-Edit
-CrashScope/
-│
-├── data/                   # Dataset (images and annotations)
-├── runs/                   # YOLOv8 training outputs
-├── model/
-│   ├── yolov8_custom.pt    # Trained YOLOv8 model
-│   ├── monitor.py          # Prediction & evaluation script
-│   └── config.yaml         # Configuration file for Telegram alerts
-│
-├── notebooks/              # Jupyter notebooks for exploration
-├── requirements.txt        # Python dependencies
-└── README.md               # You're here!
 🧪 Model Details
 Architecture: YOLOv8
 
 Classes:
 
-damaged door
+1) damaged door
 
-damaged window
+2) damaged window
 
-damaged headlight
+3) damaged headlight
 
-damaged mirror
+4) damaged mirror
 
-dent
+5) dent
 
-damaged hood
+6) damaged hood
 
-damaged bumper
+7) damaged bumper
 
-damaged windshield
+8) damaged windshield
 
 Framework: PyTorch, Ultralytics YOLO
 
