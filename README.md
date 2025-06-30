@@ -2,15 +2,15 @@
 CrashScope is an AI-powered car damage detection and classification system. Using deep learning and computer vision, it accurately identifies different types of damages from vehicle images — such as dents, broken headlights, damaged windshields, and more — making it useful for insurance assessment, vehicle inspection, and fleet management.
 
 📌 Features
-🔍 Detects multiple types of car damages from a single image
+Detects multiple types of car damages from a single image
 
-🧠 Built using YOLOv8 for real-time object detection
+Built using YOLOv8 for real-time object detection
 
-📊 Includes performance evaluation metrics (Precision, Recall, mAP, F1 Score, Accuracy)
+Includes performance evaluation metrics (Precision, Recall, mAP, F1 Score, Accuracy)
 
-🧪 Supports batch testing and result logging
+Supports batch testing and result logging
 
-📦 Containerized using Docker for easy deployment
+Containerized using Docker for easy deployment
 
 
 🧪 Model Details
